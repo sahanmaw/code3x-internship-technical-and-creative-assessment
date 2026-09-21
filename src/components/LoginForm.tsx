@@ -124,7 +124,10 @@ function LoginForm() {
         error={Boolean(emailError)}
         helperText={emailError}
         sx={{
-          mt: 6,
+          mt: {
+            xs: 4,
+            md: 6,
+          },
           ...textFieldStyles,
         }}
       />
@@ -235,8 +238,11 @@ function LoginForm() {
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          mt: 15,
-          gap: 0.5,
+          mt: {
+            xs: 8,
+            sm: 10,
+            md: 15,
+          },          gap: 0.5,
         }}
       >
         <Typography

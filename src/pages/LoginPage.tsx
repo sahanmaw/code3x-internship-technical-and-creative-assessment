@@ -12,11 +12,25 @@ function LoginPage() {
     >
       <Box
         sx={{
-          width: '50%',
+          width: {
+            xs: '100%',
+            md: '50%',
+          },
+
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          px: 6,
+
+          px: {
+            xs: 3,
+            sm: 6,
+            md: 6,
+          },
+
+          py: {
+            xs: 5,
+            md: 0,
+          },
         }}
       >
         <LoginForm />
@@ -25,7 +39,12 @@ function LoginPage() {
       <Box
         sx={{
           width: '50%',
-          display: 'flex',
+
+          display: {
+            xs: 'none',
+            md: 'flex',
+          },
+
           alignItems: 'center',
           pr: 4,
         }}
