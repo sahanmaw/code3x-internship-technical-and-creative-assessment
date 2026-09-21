@@ -1,7 +1,16 @@
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth'
+
+import { auth } from '../firebase/config'
+import { useNavigate } from 'react-router-dom'
 import { Box, IconButton } from '@mui/material'
 import { Apple, FacebookRounded, Google} from '@mui/icons-material'
 
 function GoogleLogin() {
+  const navigate = useNavigate()
+
   const socialButtonStyle = {
     width: 55,
     height: 55,
@@ -10,6 +19,25 @@ function GoogleLogin() {
     '&:hover': {
       backgroundColor: '#222',
     },
+  }
+
+  const handleGoogleLogin = async () => {
+    try {
+      const provider = new GoogleAuthProvider()
+
+      const result = await signInWithPopup(auth, provider)
+
+      const credential = GoogleAuthProvider.credentialFromResult(result)
+      const accessToken = credential?.accessToken
+
+      if (accessToken) {
+        navigate('/token', {
+          state: { accessToken },
+        })
+      }
+    } catch (error) {
+      console.error('Google login failed:', error)
+    }
   }
 
   return (
@@ -22,6 +50,7 @@ function GoogleLogin() {
     >
       <IconButton
         aria-label="Continue with Google"
+        onClick={handleGoogleLogin}
         sx={socialButtonStyle}
       >
         <Google
